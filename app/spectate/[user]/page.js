@@ -1,10 +1,10 @@
 "use client"
-import { useState, useEffect } from "react";
+import { use, useState, useEffect } from "react";
 import { supabase } from "../../../Lib/supabaseClient";
 export const dynamic = "force-dynamic";
 
 export default function SpectatePage({ params }) {
-  const { user } = params;
+  const { user } = use(params);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
