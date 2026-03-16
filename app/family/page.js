@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
-import { supabase } from "../Lib/supabaseClient";
+"use client"
+import { useState, useEffect } from "react";
+import { supabase } from "../../Lib/supabaseClient";
 
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 export default function FamilyTasks() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
@@ -16,7 +19,8 @@ export default function FamilyTasks() {
 
   async function addTask(e) {
     e.preventDefault();
-    const user = (await supabase.auth.getUser()).data.user;
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
     await supabase.from("family_tasks").insert({
       title,
       created_by: user.id,

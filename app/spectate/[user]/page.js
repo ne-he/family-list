@@ -1,10 +1,10 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { supabase } from "../Lib/supabaseClient";
+"use client"
+import { useState, useEffect } from "react";
+import { supabase } from "../../../Lib/supabaseClient";
+export const dynamic = "force-dynamic";
 
-export default function SpectatePage() {
-  const router = useRouter();
-  const { user } = router.query;
+export default function SpectatePage({ params }) {
+  const { user } = params;
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {

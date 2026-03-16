@@ -1,7 +1,9 @@
 "use client"
 import { useState } from "react";
-import { supabase } from "../Lib/supabaseClient";
+import { supabase } from "../../Lib/supabaseClient";
 import { useRouter } from "next/navigation";
+
+export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
